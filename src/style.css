@@ -5,7 +5,7 @@
   }
   
   body {
-    background-color: #444;
+    background-color: #111;
     color: white;
     font-family: sans-serif;
   }
@@ -26,7 +26,7 @@
   }
   /* Add a black background color to the top navigation */
 .topnav {
-    background-color: #333;
+    background-color: #222;
     overflow: hidden;
   }
   
@@ -53,8 +53,8 @@
     color: white;
   }
   input {
-    background-color: #333;
-    border-color: #333;
+    background-color: #222;
+    border-color: #222;
     margin: 10px;
     border-radius: 5px;
   }
@@ -66,7 +66,7 @@
     border-style: solid;
   }
   input[type=button], input[type=submit], input[type=reset] {
-    background-color: #50705a;
+    background-color: #506670;
     border: none;
     color: white;
     padding: 10px 20px;
@@ -78,10 +78,10 @@
     margin: 10px;
   }
   input::file-selector-button {
-    background-color: #282828;
+    background-color: #28282822;
     color: white;
     padding: 5px;
-    border-color: #282828;
+    border-color: #333;
     border-radius: 10px;
     box-shadow: none;
     border-style: solid;
@@ -98,4 +98,24 @@ input[type=number] {
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button { 
       -webkit-appearance: none; 
+}
+pre {
+  padding: 5px 5px;
+  border-radius: 10px;
+  font-family: monospace;
+  width: 30%;
+  border-style: solid;
+  background-color: #222;
+  border-color: #222;
+  margin: 10px;
+  border-radius: 5px;
+}
+button {
+  background-color: #506670;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: large;
 }

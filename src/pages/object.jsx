@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import CommandsView from "../components/commands_view";
 class ObjectPage extends Component {
   state = {};
   render() {
@@ -38,7 +39,9 @@ class ObjectPage extends Component {
 
           <input type="submit" value="Generate" />
           <br />
+          <button>Generate</button>
         </form>
+        <CommandsView content="minecraft:dirt" />
       </div>
     );
   }
