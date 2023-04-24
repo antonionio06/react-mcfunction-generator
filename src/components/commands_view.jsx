@@ -2,8 +2,11 @@ import React, { Component } from "react";
 class CommandsView extends Component {
   state = {};
   render() {
-    console.log(this.props);
-    return <pre>{this.props.content}</pre>;
+    if (this.props.content) {
+      return <pre>{this.props.content}</pre>;
+    } else {
+      return;
+    }
   }
 }
 

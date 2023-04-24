@@ -1,7 +1,24 @@
 import React, { Component } from "react";
 import CommandsView from "../components/commands_view";
+import * as wasm from "wasm-mcfg";
 class ObjectPage extends Component {
-  state = {};
+  state = {
+    commands: "",
+  };
+  generate = async () => {
+    let res = await fetch("/react-mcfunction-generator/obj/suzanne.obj");
+    let objbytes = new Uint8Array(await res.arrayBuffer());
+    this.setState({
+      commands: wasm.add_mesh(
+        objbytes,
+        "monke",
+        [0.0, 0.0, 0.0],
+        0.05,
+        "minecraft:snow_block",
+        15
+      ),
+    });
+  };
   render() {
     return (
       <div>
@@ -37,11 +54,11 @@ class ObjectPage extends Component {
           />
           <br />
 
-          <input type="submit" value="Generate" />
+          {/* <input type="submit" value="Generate" /> */}
           <br />
-          <button>Generate</button>
+          <button onClick={this.generate}>Generate</button>
         </form>
-        <CommandsView content="minecraft:dirt" />
+        <CommandsView content={this.state.commands} />
       </div>
     );
   }

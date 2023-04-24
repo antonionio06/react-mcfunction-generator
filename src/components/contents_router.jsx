@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 //import { Switch, Route } from "wouter";
-import { HashRouter, Routes, Route, Link } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import AboutPage from "../pages/about";
 import HomePage from "../pages/home";
 import ImagePage from "../pages/image";
@@ -26,15 +26,3 @@ class ContentsRouter extends Component {
 }
 
 export default ContentsRouter;
-{
-  /* <div>
-<div>
-  <Switch>
-    <Route path="/" component={HomePage} />
-    <Route path="/image" component={ImagePage} />
-    <Route path="/object" component={ObjectPage} />
-    <Route path="/about" component={AboutPage} />
-  </Switch>
-</div>
-</div> */
-}
