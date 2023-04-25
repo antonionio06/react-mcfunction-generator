@@ -1,112 +1,71 @@
-  *  {
-    /* background-color: rgb(64, 64, 64); */
-    color: white;
-    font-family: sans-serif;
-  }
-  
-  body {
-    background-color: #111;
-    color: white;
-    font-family: sans-serif;
-  }
-  
-  h1 {
-    color: rgb(255, 0, 0);
-    text-align: center;
-  }
-  
-  p {
-    font-family: verdana;
-    font-size: 20px;
-  }
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  /* Add a black background color to the top navigation */
+*  {
+  /* background-color: rgb(64, 64, 64); */
+  color: white;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: #111;
+  color: white;
+  font-family: sans-serif;
+}
+
+h1 {
+  color: rgb(255, 0, 0);
+  text-align: center;
+}
+
+p {
+  font-family: verdana;
+  font-size: 20px;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+/* Add a black background color to the top navigation */
 .topnav {
-    background-color: #222;
-    overflow: hidden;
-  }
-  
-  /* Style the links inside the navigation bar */
-  .topnav a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-    font-family: sans-serif;
-  }
-  
-  /* Change the color of links on hover */
-  .topnav a:hover {
-    background-color: #aaa;
-    color: black;
-  }
-  
-  /* Add a color to the active/current link */
-  .topnav a.active {
-    background-color: #04AA6D;
-    color: white;
-  }
-  input {
-    background-color: #222;
-    border-color: #222;
-    margin: 10px;
-    border-radius: 5px;
-  }
-  input[type=text] {
-    padding: 5px 5px;
-    border-radius: 10px;
-    font-family: monospace;
-    width: 40em;
-    border-style: solid;
-  }
-  input[type=button], input[type=submit], input[type=reset] {
-    background-color: #506670;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: large;
-  }
-  label {
-    margin: 10px;
-  }
-  input::file-selector-button {
-    background-color: #444;
-    color: white;
-    padding: 5px;
-    border-color: #333;
-    border-radius: 10px;
-    box-shadow: none;
-    border-style: solid;
-    padding: 8px 10px;
+  background-color: #222;
+  overflow: hidden;
 }
-input[type=number] { 
-  -moz-appearance: textfield;
-  border-style: solid;
-  padding: 5px 10px;
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  font-family: sans-serif;
 }
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button { 
-      -webkit-appearance: none; 
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #aaa;
+  color: black;
 }
-pre {
-  padding: 5px 5px;
-  border-radius: 10px;
-  font-family: monospace;
-  border-style: solid;
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+input {
   background-color: #222;
   border-color: #222;
   margin: 10px;
   border-radius: 5px;
 }
-button {
+input[type=text] {
+  padding: 5px 5px;
+  border-radius: 10px;
+  font-family: monospace;
+  width: 40em;
+  border-style: solid;
+}
+input[type=button], input[type=submit], input[type=reset], button {
   background-color: #506670;
   border: none;
   color: white;
@@ -115,29 +74,62 @@ button {
   border-radius: 5px;
   font-size: large;
 }
+label {
+  margin: 10px;
+}
+input::file-selector-button {
+  background-color: #444;
+  color: white;
+  padding: 5px;
+  border-color: #333;
+  border-radius: 10px;
+  box-shadow: none;
+  border-style: solid;
+  padding: 8px 10px;
+}
+input[type=number] { 
+  appearance: textfield;
+  border-style: solid;
+  padding: 5px 10px;
+  width: 5em;
+}
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+}
+pre {
+padding: 5px 5px;
+border-radius: 10px;
+font-family: monospace;
+border-style: solid;
+background-color: #222;
+border-color: #222;
+margin: 10px;
+border-radius: 5px;
+}
+
 .layer1 {
-  background-color: #222;
-  padding: 10px;
-  border-radius: 5px;
-  width: min-content;
+background-color: #222;
+padding: 5px;
+border-radius: 5px;
+width: max-content;
 }
 .layer2 {
-  background-color: #333;
-  padding: 10px;
-  border-radius: 5px;
+background-color: #333;
+padding: 5px;
+border-radius: 5px;
 }
 textarea {
-  background-color: #333;
-  padding: 10px;
-  border-radius: 5px;
-  overflow-wrap: normal;
-  white-space: pre;
-  overflow-wrap: normal;
-  overflow-x: scroll;
-  font-family: monospace;
-  font-size: xx-small;
+background-color: #333;
+padding: 10px;
+border-radius: 5px;
+overflow-wrap: normal;
+white-space: pre;
+overflow-wrap: normal;
+overflow-x: scroll;
+font-family: monospace;
+font-size: xx-small;
 }
 p {
-  font-family: sans-serif;
-  font-weight: 300;
+font-family: sans-serif;
+font-weight: 300;
 }

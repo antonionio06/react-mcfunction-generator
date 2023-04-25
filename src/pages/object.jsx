@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import CommandsView from "../components/commands_view";
 import ObjInput from "../components/obj_input";
+import VectorInput from "../components/vector_input";
 import * as wasm from "wasm-mcfg";
 class ObjectPage extends Component {
   state = {
     obj_file: null,
     commands: null,
     width: 0.05,
+    origin: [0.0, 0.0, 0.0],
     blockname: null,
   };
   handleSetObj = (x) => {
@@ -19,6 +21,9 @@ class ObjectPage extends Component {
   handleSetBlockname = (e) => {
     this.setState({ blockname: e.target.value });
   };
+  handleSetOrigin = (vec) => {
+    this.setState({ origin: vec });
+  };
   generate = async () => {
     // let res = await fetch("/react-mcfunction-generator/obj/suzanne.obj");
     // let objbytes = new Uint8Array(await res.arrayBuffer());
@@ -26,7 +31,7 @@ class ObjectPage extends Component {
       commands: wasm.add_mesh(
         this.state.obj_file,
         "monke",
-        [0.0, 0.0, 0.0],
+        this.state.origin,
         this.state.width,
         this.state.blockname,
         15
@@ -61,20 +66,16 @@ class ObjectPage extends Component {
             type="number"
             name="inwidth"
             id="widthinput"
-            step="any"
             defaultValue="0.05"
+            step={0.01}
             onChange={this.handleSetWidth}
           />
         </label>
         <br />
-        <label>Scale object by:</label>
-        <input
-          type="number"
-          name="inscale"
-          id="scaleinput"
-          step="any"
-          defaultValue="1.0"
-        />
+        <label>
+          entity position:
+          <VectorInput onChange={console.log} value={this.state.origin} />
+        </label>
         <br />
         {maybeButton}
         {/* <input type="submit" value="Generate" /> */}

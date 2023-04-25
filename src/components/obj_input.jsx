@@ -2,7 +2,6 @@ import React, { Component } from "react";
 class ObjInput extends Component {
   state = {};
   handleFileChange = async (e) => {
-    console.log("file handled");
     let file = e.target.files[0];
     if (!file) {
       return;
