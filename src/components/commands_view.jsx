@@ -13,10 +13,8 @@ class CommandsView extends Component {
     return (
       <div className="layer1">
         <button onClick={this.copyToClipboard}>Copy</button>
-        <p>{ncommands + " commands generated"}</p>
-        <textarea rows={50} cols={200}>
-          {this.props.content}
-        </textarea>
+        <span>{ncommands + " commands generated"}</span>
+        <textarea rows={50} cols={200} readOnly value={this.props.content} />
       </div>
     );
   }

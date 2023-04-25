@@ -87,9 +87,6 @@
     border-style: solid;
     padding: 8px 10px;
 }
-input[type=file]{
-  /* padding: 10px 20px; */
-}
 input[type=number] { 
   -moz-appearance: textfield;
   border-style: solid;
