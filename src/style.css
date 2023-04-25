@@ -118,3 +118,28 @@ button {
   border-radius: 5px;
   font-size: large;
 }
+.layer1 {
+  background-color: #222;
+  padding: 10px;
+  border-radius: 5px;
+}
+.layer2 {
+  background-color: #333;
+  padding: 10px;
+  border-radius: 5px;
+}
+textarea {
+  background-color: #333;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-wrap: normal;
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: scroll;
+  font-family: monospace;
+  font-size: xx-small;
+}
+p {
+  font-family: sans-serif;
+  font-weight: 300;
+}
