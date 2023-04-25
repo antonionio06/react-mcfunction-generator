@@ -5,11 +5,19 @@ import * as wasm from "wasm-mcfg";
 class ObjectPage extends Component {
   state = {
     obj_file: null,
-    commands: "",
+    commands: null,
+    width: 0.05,
+    blockname: null,
   };
   handleSetObj = (x) => {
     this.setState({ obj_file: x });
     console.log(x);
+  };
+  handleSetWidth = (e) => {
+    this.setState({ width: parseFloat(e.target.value) });
+  };
+  handleSetBlockname = (e) => {
+    this.setState({ blockname: e.target.value });
   };
   generate = async () => {
     // let res = await fetch("/react-mcfunction-generator/obj/suzanne.obj");
@@ -19,39 +27,45 @@ class ObjectPage extends Component {
         this.state.obj_file,
         "monke",
         [0.0, 0.0, 0.0],
-        0.05,
-        "minecraft:snow_block",
+        this.state.width,
+        this.state.blockname,
         15
       ),
     });
   };
   render() {
     let maybeButton = <></>;
-    if (this.state.obj_file) {
+    if (this.state.obj_file && this.state.width && this.state.blockname) {
       maybeButton = <button onClick={this.generate}>Generate</button>;
     }
     return (
       <div>
-        <label>Block:</label>
-        <input
-          type="text"
-          name="intext"
-          id="blockinput"
-          placeholder="minecraft:dirt"
-        />
+        <label>
+          Block:
+          <input
+            type="text"
+            name="intext"
+            id="blockinput"
+            placeholder="minecraft:dirt"
+            onChange={this.handleSetBlockname}
+          />
+        </label>
         <br />
-        <label>.obj file:</label>
-        <input type="file" name="infile" id="objinput" />
-        <br />
-
-        <label>Wireframe width:</label>
-        <input
-          type="number"
-          name="inwidth"
-          id="widthinput"
-          step="any"
-          defaultValue="0.05"
-        />
+        <label>
+          .obj file:
+          <ObjInput handleSetObj={this.handleSetObj} />
+        </label>
+        <label>
+          Wireframe width:
+          <input
+            type="number"
+            name="inwidth"
+            id="widthinput"
+            step="any"
+            defaultValue="0.05"
+            onChange={this.handleSetWidth}
+          />
+        </label>
         <br />
         <label>Scale object by:</label>
         <input
@@ -62,7 +76,6 @@ class ObjectPage extends Component {
           defaultValue="1.0"
         />
         <br />
-        <ObjInput handleSetObj={this.handleSetObj} />
         {maybeButton}
         {/* <input type="submit" value="Generate" /> */}
         <br />
