@@ -3,6 +3,7 @@ import CommandsView from "../components/commands_view";
 import ObjInput from "../components/obj_input";
 import VectorInput from "../components/vector_input";
 import * as wasm from "wasm-mcfg";
+import OptionPicker from "../components/option_picker";
 class ObjectPage extends Component {
   state = {
     obj_file: null,
@@ -10,6 +11,7 @@ class ObjectPage extends Component {
     width: 0.05,
     origin: [0.0, 0.0, 0.0],
     blockname: null,
+    type: null,
   };
   handleSetObj = (x) => {
     this.setState({ obj_file: x });
@@ -24,9 +26,13 @@ class ObjectPage extends Component {
   handleSetOrigin = (vec) => {
     this.setState({ origin: vec });
   };
+  handleSetType = (type) => {
+    this.setState({ type: type });
+  };
   generate = async () => {
     // let res = await fetch("/react-mcfunction-generator/obj/suzanne.obj");
     // let objbytes = new Uint8Array(await res.arrayBuffer());
+    // let bg = wasm.BlockGrid.new([32, 32, 32], this.state.origin, 0.0625);
     this.setState({
       commands: wasm.add_mesh(
         this.state.obj_file,
@@ -75,6 +81,14 @@ class ObjectPage extends Component {
         <label>
           entity position:
           <VectorInput onChange={console.log} value={this.state.origin} />
+        </label>
+        <br />
+        <label>
+          <OptionPicker
+            onChange={this.handleSetType}
+            options={["wireframe", "voxelize"]}
+            value={this.state.type}
+          />
         </label>
         <br />
         {maybeButton}
