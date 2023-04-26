@@ -66,22 +66,6 @@ class ObjectPage extends Component {
           .obj file:
           <ObjInput handleSetObj={this.handleSetObj} />
         </label>
-        <label>
-          Wireframe width:
-          <input
-            type="number"
-            name="inwidth"
-            id="widthinput"
-            defaultValue="0.05"
-            step={0.01}
-            onChange={this.handleSetWidth}
-          />
-        </label>
-        <br />
-        <label>
-          entity position:
-          <VectorInput onChange={console.log} value={this.state.origin} />
-        </label>
         <br />
         <label>
           <OptionPicker
@@ -91,11 +75,30 @@ class ObjectPage extends Component {
           />
         </label>
         <br />
-        {maybeButton}
-        {/* <input type="submit" value="Generate" /> */}
-        <br />
+        <div className="layer2">
+          <label>
+            Wireframe width:
+            <input
+              type="number"
+              name="inwidth"
+              id="widthinput"
+              defaultValue="0.05"
+              step={0.01}
+              onChange={this.handleSetWidth}
+            />
+          </label>
+          <br />
+          <label>
+            entity position:
+            <VectorInput onChange={console.log} value={this.state.origin} />
+          </label>
+          <br />
+          {maybeButton}
+          {/* <input type="submit" value="Generate" /> */}
+          <br />
 
-        <CommandsView content={this.state.commands} />
+          <CommandsView content={this.state.commands} />
+        </div>
       </div>
     );
   }
