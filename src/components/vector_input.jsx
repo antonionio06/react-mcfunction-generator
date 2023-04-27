@@ -16,7 +16,8 @@ class VectorInput extends Component {
           className="layer2"
           defaultValue={this.props.value[0]}
           onChange={(e) => this.handleChange(e, 0)}
-          step={0.1}
+          step={this.props.step}
+          min={this.props.min}
         />
         <span style={{ color: "green" }}>y</span>
         <input
@@ -24,7 +25,8 @@ class VectorInput extends Component {
           className="layer2"
           defaultValue={this.props.value[1]}
           onChange={(e) => this.handleChange(e, 1)}
-          step={0.1}
+          step={this.props.step}
+          min={this.props.min}
         />
         <span style={{ color: "blue" }}>z</span>
         <input
@@ -32,7 +34,8 @@ class VectorInput extends Component {
           className="layer2"
           defaultValue={this.props.value[2]}
           onChange={(e) => this.handleChange(e, 2)}
-          step={0.1}
+          step={this.props.step}
+          min={this.props.min}
         />
       </div>
     );
