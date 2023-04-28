@@ -11,6 +11,7 @@ class ObjectPage extends Component {
     blockname: null,
     type: null,
 
+    entities_not_blocks: false,
     tag: "",
     brightnessint: -1,
     brightness: undefined,
@@ -22,7 +23,6 @@ class ObjectPage extends Component {
     grid_size: [64, 64, 64],
     grid_corner: [0.0, 0.0, 0.0],
     hollow: true,
-    entities_not_blocks: false,
 
     commands: null,
   };
@@ -61,7 +61,6 @@ class ObjectPage extends Component {
       this.state.block_size
     );
     bg.add_mesh(this.state.obj_file);
-    console.log("aaaaa");
     if (this.state.hollow) {
       bg.make_hollow();
     }
@@ -82,7 +81,7 @@ class ObjectPage extends Component {
   entityOptionsInput = (
     <div className="layer2">
       <label>
-        tag (so that you can select the generated entities with @e[tag=�]):
+        tag (so that you can select generated entities with @e[tag=�]):
         <input
           type="text"
           className="layer3"
@@ -227,7 +226,7 @@ class ObjectPage extends Component {
           </label>
           <br />
           <label>
-            Make it out of display entities (as opposed to just building it with
+            Make it out of display entities (instead just building it with
             blocks)
             <input
               type="checkbox"

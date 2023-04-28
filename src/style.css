@@ -160,3 +160,6 @@ font-weight: 300;
 .round-right {
   border-radius: 0px 5px 5px 0px;
 }
+.pixelated {
+  image-rendering: pixelated;
+}

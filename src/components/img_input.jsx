@@ -7,7 +7,7 @@ class ImgInput extends Component {
         <input type="file" onChange={this.props.onChange} className="layer1" />
         <br />
         <div className={this.props.class2}>
-          <img src={this.props.src} height={300} />
+          <img src={this.props.src} height={300} className="pixelated" />
         </div>
       </div>
     );
