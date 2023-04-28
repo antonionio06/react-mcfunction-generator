@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/react-mcfunction-generator/static/css/main.4898d9b1.css",
-    "main.js": "/react-mcfunction-generator/static/js/main.df493e60.js",
+    "main.css": "/react-mcfunction-generator/static/css/main.79ed414d.css",
+    "main.js": "/react-mcfunction-generator/static/js/main.d3326ab9.js",
     "static/media/wasm_mcfg_bg.wasm": "/react-mcfunction-generator/static/media/wasm_mcfg_bg.bd4e76db3b27d598f980.wasm",
     "index.html": "/react-mcfunction-generator/index.html",
-    "main.4898d9b1.css.map": "/react-mcfunction-generator/static/css/main.4898d9b1.css.map",
-    "main.df493e60.js.map": "/react-mcfunction-generator/static/js/main.df493e60.js.map"
+    "main.79ed414d.css.map": "/react-mcfunction-generator/static/css/main.79ed414d.css.map",
+    "main.d3326ab9.js.map": "/react-mcfunction-generator/static/js/main.d3326ab9.js.map"
   },
   "entrypoints": [
-    "static/css/main.4898d9b1.css",
-    "static/js/main.df493e60.js"
+    "static/css/main.79ed414d.css",
+    "static/js/main.d3326ab9.js"
   ]
 }
