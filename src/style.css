@@ -3,6 +3,7 @@
   color: white;
   font-family: sans-serif;
   color-scheme: dark;
+  border-radius: 5px;
 }
 body {
   background-color: #111;
@@ -43,25 +44,16 @@ ul {
 
 /* Change the color of links on hover */
 .topnav a:hover {
-  background-color: #aaa;
-  color: black;
-}
-
-/* Add a color to the active/current link */
-.topnav a.active {
-  background-color: #04AA6D;
+  background-color: #506670;
   color: white;
 }
+
 input {
   margin: 5px;
-  border-radius: 5px;
   border-style: solid;
 }
 input[type=text] {
-  /* padding: 5px 5px;
-  border-radius: 10px; */
   font-family: monospace;
-  /* width: 40em; */
 }
 input[type=button], input[type=submit], input[type=reset], button {
   background-color: #506670;
@@ -69,7 +61,6 @@ input[type=button], input[type=submit], input[type=reset], button {
   color: white;
   padding: 10px 20px;
   cursor: pointer;
-  border-radius: 5px;
   font-size: large;
   transition: background-color 0.3s;
 }
@@ -80,33 +71,26 @@ label {
   margin: 10px;
 }
 input::file-selector-button {
-  background-color: #333;
-  color: white;
-  padding: 5px;
-  border-color: #333;
   border-radius: 10px;
-  box-shadow: none;
   border-style: solid;
   padding: 8px 10px;
 }
-/* input[type=number] { 
-  appearance: textfield;
-  border-style: solid;
-  padding: 5px 10px;
-  width: 5em;
+input.layer1::file-selector-button {
+  background-color: #333;
+  border-color: #333;
 }
-input[type=number]::-webkit-outer-spin-button { 
-    -webkit-appearance: none;
-} */
+input.layer2::file-selector-button {
+  background-color: #444;
+  border-color: #444;
+}
+
 pre {
 padding: 5px 5px;
-border-radius: 10px;
 font-family: monospace;
 border-style: solid;
 background-color: #222;
 border-color: #222;
 margin: 10px;
-border-radius: 5px;
 }
 .match-parent {
   width: 100%;
@@ -115,30 +99,25 @@ border-radius: 5px;
 background-color: #222;
 border-color: #222;
 padding: 5px;
-border-radius: 5px;
 }
 .layer2 {
 background-color: #333;
 border-color: #333;
 padding: 5px;
-border-radius: 5px;
 }
 .layer3 {
   background-color: #444;
   border-color: #444;
   padding: 5px;
-  border-radius: 5px;
 }
 .layer4 {
   background-color: #555;
   border-color: #555;
   padding: 5px;
-  border-radius: 5px;
 }
 textarea {
 background-color: #333;
 padding: 10px;
-border-radius: 5px;
 overflow-wrap: normal;
 white-space: pre;
 overflow-wrap: normal;
