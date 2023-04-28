@@ -39,7 +39,7 @@ class ObjectPage extends Component {
     this.setState({ type: type });
   };
 
-  generateWireframe = async () => {
+  generateWireframe = () => {
     // let res = await fetch("/react-mcfunction-generator/obj/suzanne.obj");
     // let objbytes = new Uint8Array(await res.arrayBuffer());
     // let bg = wasm.BlockGrid.new([32, 32, 32], this.state.origin, 0.0625);
@@ -170,11 +170,11 @@ class ObjectPage extends Component {
       continuation = (
         <div className="layer1 match-parent">
           <p style={{ color: "red", fontSize: "small" }}>
-            Warning: the voxelation algorithm used is very bad and it'll only
-            work if your object's mesh is closed (ie. any given straight line
-            will intersect it an even number of times) and no vertices align
-            with grid's lines (that can usually be assured by shifting grid's
-            origin by 0.000001 in all directions or sth).
+            the voxelization algorithm used is very bad and it'll only work if
+            your object's mesh is closed (ie. any given straight line will
+            intersect it an even number of times) and no vertices align with
+            grid's lines (that can usually be assured by shifting grid's origin
+            by 0.000001 in all directions or sth).
           </p>
           <label>
             Voxel size:

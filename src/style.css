@@ -76,7 +76,7 @@ label {
   margin: 10px;
 }
 input::file-selector-button {
-  background-color: #444;
+  background-color: #333;
   color: white;
   padding: 5px;
   border-color: #333;
