@@ -72,6 +72,9 @@ input[type=button], input[type=submit], input[type=reset], button {
   border-radius: 5px;
   font-size: large;
 }
+button.active {
+  background-color: #04AA6D;
+}
 label {
   margin: 10px;
 }
