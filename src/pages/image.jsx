@@ -109,12 +109,15 @@ class ImagePage extends Component {
 
     return (
       <div>
-        <ImgInput
-          src={this.state.image_url}
-          onChange={this.onImageChange}
-          class1="layer1"
-          class2="layer2"
-        />
+        <label>
+          input image:
+          <ImgInput
+            src={this.state.image_url}
+            onChange={this.onImageChange}
+            class1="layer1"
+            class2="layer2"
+          />
+        </label>
         <label>
           Make it out of display entities (instead just building it with blocks)
           <input

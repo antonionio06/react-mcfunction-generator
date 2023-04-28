@@ -71,6 +71,7 @@ input[type=button], input[type=submit], input[type=reset], button {
   cursor: pointer;
   border-radius: 5px;
   font-size: large;
+  transition: background-color 0.3s;
 }
 button.active {
   background-color: #04AA6D;
