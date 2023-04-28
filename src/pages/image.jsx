@@ -55,12 +55,12 @@ class ImagePage extends Component {
     let entityOptionsInput = <></>;
     if (this.state.entities_not_blocks) {
       entityOptionsInput = (
-        <div className="layer2">
+        <div className="layer1">
           <label>
             tag (so that you can select generated entities with @e[tag=�]):
             <input
               type="text"
-              className="layer3"
+              className="layer2"
               defaultValue={this.state.tag}
               onChange={(e) => {
                 this.setState({ tag: e.target.value });
@@ -72,7 +72,7 @@ class ImagePage extends Component {
             brightness (-1 for default)
             <input
               type="number"
-              className="layer3"
+              className="layer2"
               min={-1}
               max={15}
               defaultValue={this.state.brightnessint}
@@ -92,7 +92,7 @@ class ImagePage extends Component {
             block size
             <input
               type="number"
-              className="layer3"
+              className="layer2"
               min={0}
               step={1.0 / 64}
               defaultValue={this.state.scale}
