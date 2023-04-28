@@ -4,11 +4,16 @@ import ObjInput from "../components/obj_input";
 import VectorInput from "../components/vector_input";
 import * as wasm from "wasm-mcfg";
 import OptionPicker from "../components/option_picker";
+import { wait } from "@testing-library/user-event/dist/utils";
 class ObjectPage extends Component {
   state = {
     obj_file: null,
     blockname: null,
     type: null,
+
+    tag: "",
+    brightnessint: -1,
+    brightness: undefined,
 
     width: 0.05,
     origin: [0.0, 0.0, 0.0],
@@ -16,6 +21,8 @@ class ObjectPage extends Component {
     block_size: 1.0 / 32,
     grid_size: [64, 64, 64],
     grid_corner: [0.0, 0.0, 0.0],
+    hollow: true,
+    entities_not_blocks: false,
 
     commands: null,
   };
@@ -25,15 +32,13 @@ class ObjectPage extends Component {
   handleSetBlockname = (e) => {
     this.setState({ blockname: e.target.value });
   };
-  handleSetWidth = (e) => {
-    this.setState({ width: parseFloat(e.target.value) });
-  };
   handleSetOrigin = (vec) => {
     this.setState({ origin: parseFloat(vec) });
   };
   handleSetType = (type) => {
     this.setState({ type: type });
   };
+
   generateWireframe = async () => {
     // let res = await fetch("/react-mcfunction-generator/obj/suzanne.obj");
     // let objbytes = new Uint8Array(await res.arrayBuffer());
@@ -41,15 +46,15 @@ class ObjectPage extends Component {
     this.setState({
       commands: wasm.add_mesh(
         this.state.obj_file,
-        "monke",
+        this.state.tag,
         this.state.origin,
         this.state.width,
         this.state.blockname,
-        15
+        this.state.brightness
       ),
     });
   };
-  generateSolid = async () => {
+  generateVoxels = async () => {
     let bg = wasm.BlockGrid.new(
       this.state.grid_size,
       this.state.grid_corner,
@@ -57,11 +62,57 @@ class ObjectPage extends Component {
     );
     bg.add_mesh(this.state.obj_file);
     console.log("aaaaa");
-    bg.make_hollow();
-    this.setState({
-      commands: bg.gen_commands_solid(this.state.blockname),
-    });
+    if (this.state.hollow) {
+      bg.make_hollow();
+    }
+    if (this.state.entities_not_blocks) {
+      this.setState({
+        commands: bg.gen_commands(
+          this.state.blockname,
+          this.state.tag,
+          this.state.brightness
+        ),
+      });
+    } else {
+      this.setState({
+        commands: bg.gen_commands_solid(this.state.blockname),
+      });
+    }
   };
+  entityOptionsInput = (
+    <div className="layer2">
+      <label>
+        tag (so that you can select the generated entities with @e[tag=�]):
+        <input
+          type="text"
+          className="layer3"
+          defaultValue={this.state.tag}
+          onChange={(e) => {
+            this.setState({ tag: e.target.value });
+          }}
+        />
+      </label>
+      <br />
+      <label>
+        brightness (-1 for default)
+        <input
+          type="number"
+          className="layer3"
+          min={-1}
+          max={15}
+          defaultValue={this.state.brightnessint}
+          onChange={async (e) => {
+            let brightnessint = parseInt(e.target.value);
+            let brightness = brightnessint == -1 ? undefined : brightnessint;
+            this.setState({
+              brightnessint: brightnessint,
+              brightness: brightness,
+            });
+          }}
+        />
+      </label>
+    </div>
+  );
   render() {
     let maybeButton = <></>;
     let continuation = <></>;
@@ -72,17 +123,18 @@ class ObjectPage extends Component {
         );
       }
       continuation = (
-        <div className="layer2">
+        <div className="layer1 match-parent">
           <label>
             Wireframe width:
             <input
               key={1}
               type="number"
-              name="inwidth"
-              id="widthinput"
-              defaultValue="0.05"
+              value={this.state.width}
               step={0.01}
-              onChange={this.handleSetWidth}
+              onChange={(e) => {
+                this.setState({ width: parseFloat(e.target.value) });
+              }}
+              className="layer2"
             />
           </label>
           <br />
@@ -95,9 +147,12 @@ class ObjectPage extends Component {
               }}
               value={this.state.origin}
               step={0.1}
+              class1="layer2"
+              class2="layer3"
             />
           </label>
           <br />
+          {this.entityOptionsInput}
           {maybeButton}
           <br />
         </div>
@@ -110,10 +165,10 @@ class ObjectPage extends Component {
         this.state.block_size &&
         this.state.blockname
       ) {
-        maybeButton = <button onClick={this.generateSolid}>Generate</button>;
+        maybeButton = <button onClick={this.generateVoxels}>Generate</button>;
       }
       continuation = (
-        <div className="layer2">
+        <div className="layer1 match-parent">
           <p style={{ color: "red", fontSize: "small" }}>
             Warning: the voxelation algorithm used is very bad and it'll only
             work if your object's mesh is closed (ie. any given straight line
@@ -127,7 +182,7 @@ class ObjectPage extends Component {
               key={2}
               type="number"
               name="inwidth"
-              id="widthinput"
+              className="layer2"
               value={this.state.block_size}
               step={1.0 / 32}
               min={0.0}
@@ -145,6 +200,8 @@ class ObjectPage extends Component {
               value={this.state.grid_size}
               step={1}
               min={0}
+              class1="layer2"
+              class2="layer3"
             />
           </label>
           <br />
@@ -155,10 +212,33 @@ class ObjectPage extends Component {
               onChange={(val) => this.setState({ grid_corner: val })}
               value={this.state.grid_corner}
               step={0.1}
+              class1="layer2"
+              class2="layer3"
             />
           </label>
           <br />
-
+          <label>
+            Make it hollow (for optimization purposes)
+            <input
+              type="checkbox"
+              checked={this.state.hollow}
+              onChange={(e) => this.setState({ hollow: e.target.checked })}
+            />
+          </label>
+          <br />
+          <label>
+            Make it out of display entities (as opposed to just building it with
+            blocks)
+            <input
+              type="checkbox"
+              checked={this.state.entities_not_blocks}
+              onChange={(e) =>
+                this.setState({ entities_not_blocks: e.target.checked })
+              }
+            />
+          </label>
+          <br />
+          {this.state.entities_not_blocks ? this.entityOptionsInput : <></>}
           {maybeButton}
           <br />
         </div>
@@ -172,8 +252,8 @@ class ObjectPage extends Component {
             type="text"
             name="intext"
             id="blockinput"
-            placeholder="minecraft:dirt"
             onChange={this.handleSetBlockname}
+            className="layer1"
           />
         </label>
         <br />
