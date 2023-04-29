@@ -5,7 +5,7 @@ function replacer(key, value) {
   if (value instanceof Map) {
     return {
       dataType: "Map",
-      value: Array.from(value.entries()), // or with spread: value: [...value]
+      value: Array.from(value.entries()),
     };
   } else {
     return value;
@@ -24,8 +24,31 @@ class ObjInput extends Component {
     this.props.handleSetObj(bytes, obj_info);
   };
   render() {
+    let rendered_info = <>no file selected</>;
+    let info = this.props.objInfo;
+    if (info instanceof Map) {
+      if (info.get("valid")) {
+        rendered_info = (
+          <div>
+            <p>Valid obj file</p>
+            <p>{info.get("triangles")} triangles</p>
+            <p>
+              uv coordinates available: {info.get("has_uvs") ? "yes" : "no"}
+            </p>
+            <p>normals available: {info.get("has_normals") ? "yes" : "no"}</p>
+            <p>
+              boundary box: from [{info.get("boundary").get("from").join(", ")}]
+              to [{info.get("boundary").get("to").join(", ")}]
+            </p>
+          </div>
+        );
+      } else {
+        rendered_info = <p style={{ color: "red" }}>File invalid</p>;
+      }
+    }
+
     return (
-      <div className="layer1">
+      <div className="layer1" style={{ display: "flex" }}>
         <input
           type="file"
           id="inobj"
@@ -33,7 +56,7 @@ class ObjInput extends Component {
           accept="model/obj"
           onChange={this.handleFileChange}
         />
-        <p>{JSON.stringify(this.props.objInfo, replacer)}</p>
+        {rendered_info}
       </div>
     );
   }
