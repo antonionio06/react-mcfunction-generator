@@ -1,4 +1,17 @@
 import React, { Component } from "react";
+import * as wasm from "wasm-mcfg";
+
+function replacer(key, value) {
+  if (value instanceof Map) {
+    return {
+      dataType: "Map",
+      value: Array.from(value.entries()), // or with spread: value: [...value]
+    };
+  } else {
+    return value;
+  }
+}
+
 class ObjInput extends Component {
   state = {};
   handleFileChange = async (e) => {
@@ -7,7 +20,8 @@ class ObjInput extends Component {
       return;
     }
     let bytes = new Uint8Array(await file.arrayBuffer());
-    this.props.handleSetObj(bytes);
+    let obj_info = wasm.analyze_obj(bytes);
+    this.props.handleSetObj(bytes, obj_info);
   };
   render() {
     return (
@@ -19,6 +33,7 @@ class ObjInput extends Component {
           accept="model/obj"
           onChange={this.handleFileChange}
         />
+        <p>{JSON.stringify(this.props.objInfo, replacer)}</p>
       </div>
     );
   }

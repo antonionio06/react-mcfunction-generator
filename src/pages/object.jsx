@@ -7,6 +7,7 @@ import OptionPicker from "../components/option_picker";
 class ObjectPage extends Component {
   state = {
     obj_file: null,
+    obj_info: null,
     blockname: null,
     type: null,
 
@@ -25,8 +26,8 @@ class ObjectPage extends Component {
 
     commands: null,
   };
-  handleSetObj = (x) => {
-    this.setState({ obj_file: x });
+  handleSetObj = (obj_bytes, obj_info) => {
+    this.setState({ obj_file: obj_bytes, obj_info: obj_info });
   };
   handleSetBlockname = (e) => {
     this.setState({ blockname: e.target.value });
@@ -263,7 +264,10 @@ class ObjectPage extends Component {
         <br />
         <label>
           .obj file:
-          <ObjInput handleSetObj={this.handleSetObj} />
+          <ObjInput
+            handleSetObj={this.handleSetObj}
+            objInfo={this.state.obj_info}
+          />
         </label>
         <br />
         <label>
