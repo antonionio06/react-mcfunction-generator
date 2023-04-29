@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/react-mcfunction-generator/static/css/main.a0b96965.css",
-    "main.js": "/react-mcfunction-generator/static/js/main.d03fd490.js",
-    "static/media/wasm_mcfg_bg.wasm": "/react-mcfunction-generator/static/media/wasm_mcfg_bg.bd4e76db3b27d598f980.wasm",
+    "main.css": "/react-mcfunction-generator/static/css/main.13db2f54.css",
+    "main.js": "/react-mcfunction-generator/static/js/main.ff8592fe.js",
+    "static/media/wasm_mcfg_bg.wasm": "/react-mcfunction-generator/static/media/wasm_mcfg_bg.a02686924a792e646eaa.wasm",
     "index.html": "/react-mcfunction-generator/index.html",
-    "main.a0b96965.css.map": "/react-mcfunction-generator/static/css/main.a0b96965.css.map",
-    "main.d03fd490.js.map": "/react-mcfunction-generator/static/js/main.d03fd490.js.map"
+    "main.13db2f54.css.map": "/react-mcfunction-generator/static/css/main.13db2f54.css.map",
+    "main.ff8592fe.js.map": "/react-mcfunction-generator/static/js/main.ff8592fe.js.map"
   },
   "entrypoints": [
-    "static/css/main.a0b96965.css",
-    "static/js/main.d03fd490.js"
+    "static/css/main.13db2f54.css",
+    "static/js/main.ff8592fe.js"
   ]
 }
