@@ -4,7 +4,6 @@ import ObjInput from "../components/obj_input";
 import VectorInput from "../components/vector_input";
 import * as wasm from "wasm-mcfg";
 import OptionPicker from "../components/option_picker";
-import { wait } from "@testing-library/user-event/dist/utils";
 class ObjectPage extends Component {
   state = {
     obj_file: null,
@@ -79,7 +78,7 @@ class ObjectPage extends Component {
     }
   };
   entityOptionsInput = (
-    <div className="layer2">
+    <>
       <label>
         tag (so that you can select generated entities with @e[tag=�]):
         <input
@@ -110,7 +109,7 @@ class ObjectPage extends Component {
           }}
         />
       </label>
-    </div>
+    </>
   );
   render() {
     let maybeButton = <></>;
@@ -237,7 +236,13 @@ class ObjectPage extends Component {
             />
           </label>
           <br />
-          {this.state.entities_not_blocks ? this.entityOptionsInput : <></>}
+
+          {this.state.entities_not_blocks ? (
+            <div className="layer2">{this.entityOptionsInput}</div>
+          ) : (
+            <></>
+          )}
+
           {maybeButton}
           <br />
         </div>

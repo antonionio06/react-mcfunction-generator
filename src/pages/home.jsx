@@ -11,7 +11,9 @@ class HomePage extends Component {
         <div class="tooltip">
           Hover over me
           <span class="tooltiptext layer2">Tooltip text</span>
+          othersut
         </div>
+        otherstuff
       </div>
     );
   }

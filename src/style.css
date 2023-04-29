@@ -1,3 +1,8 @@
+:root {
+  --colored-color: #506670
+}
+
+
 *  {
   /* background-color: rgb(64, 64, 64); */
   color: white;
@@ -44,7 +49,7 @@ ul {
 
 /* Change the color of links on hover */
 .topnav a:hover {
-  background-color: #506670;
+  background-color: var(--colored-color);
   color: white;
 }
 
@@ -56,7 +61,7 @@ input[type=text] {
   font-family: monospace;
 }
 input[type=button], input[type=submit], input[type=reset], button {
-  background-color: #506670;
+  background-color: var(--colored-color);
   border: none;
   color: white;
   padding: 10px 20px;
@@ -134,7 +139,7 @@ font-weight: 300;
   border-radius: 0px;
 }
 .toggle-button-active {
-  background-color: #506670;
+  background-color: var(--colored-color);
   border-radius: 0px;
 }
 .round-left {
@@ -146,7 +151,15 @@ font-weight: 300;
 .pixelated {
   image-rendering: pixelated;
 }
-
+.obj-fit {
+  object-fit: contain;
+}
+.nowrap {
+  white-space: nowrap;
+}
+.inline-block {
+  display: inline-block;
+}
 .tooltip .tooltiptext {
   visibility: hidden;
   text-align: center;
