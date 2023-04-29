@@ -8,11 +8,11 @@ class HomePage extends Component {
         <p>
           But for now i'll use it as a canvas to try different html thingies
         </p>
-        <div class="tooltip">
+        <span class="tooltip">
           Hover over me
           <span class="tooltiptext layer2">Tooltip text</span>
           othersut
-        </div>
+        </span>
         otherstuff
       </div>
     );
