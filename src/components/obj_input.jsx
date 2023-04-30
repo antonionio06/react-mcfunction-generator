@@ -13,40 +13,35 @@ class ObjInput extends Component {
     this.props.handleSetObj(bytes, obj_info);
   };
   render() {
-    let rendered_info = <>no file selected</>;
+    let rendered_info = <></>;
     let info = this.props.objInfo;
     if (info instanceof Map) {
       if (info.get("valid")) {
         rendered_info = (
-          <div>
-            <p>Valid obj file</p>
-            <p>{info.get("triangles")} triangles</p>
-            <p>
-              uv coordinates available: {info.get("has_uvs") ? "yes" : "no"}
-            </p>
-            <p>normals available: {info.get("has_normals") ? "yes" : "no"}</p>
-            <p>
-              boundary box: from [{info.get("boundary").get("from").join(", ")}]
-              to [{info.get("boundary").get("to").join(", ")}]
-            </p>
+          <div className="layer1">
+            Valid obj file
+            <br />
+            {info.get("triangles")} triangles
+            <br />
+            uv coordinates available: {info.get("has_uvs") ? "yes" : "no"}
           </div>
         );
       } else {
-        rendered_info = <p style={{ color: "red" }}>File invalid</p>;
+        rendered_info = <p className="error layer1">File invalid</p>;
       }
     }
 
     return (
-      <div className="layer1" style={{ display: "flex" }}>
+      <>
         <input
           type="file"
           id="inobj"
-          className="layer2"
+          className="layer1 clickable"
           accept="model/obj"
           onChange={this.handleFileChange}
         />
         {rendered_info}
-      </div>
+      </>
     );
   }
 }

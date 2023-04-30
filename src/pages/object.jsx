@@ -27,6 +27,7 @@ class ObjectPage extends Component {
 
     image_url: null,
     image_bytes: null,
+    image_info: null,
 
     commands: null,
   };
@@ -74,19 +75,42 @@ class ObjectPage extends Component {
     if (this.state.hollow) {
       bg.make_hollow();
     }
-    if (this.state.entities_not_blocks) {
-      this.setState({
-        commands: bg.gen_commands(
+    let commands = "";
+    let colorize =
+      this.state.image_info instanceof Map &&
+      this.state.image_info.get("valid");
+    let bc = null;
+    if (colorize) {
+      bg.colorize(this.state.obj_file, this.state.image_bytes);
+      let res = await fetch(
+        "/react-mcfunction-generator/bclists/blockcolors.txt"
+      );
+      let bcstring = await res.text();
+      bc = wasm.BlocksColors.from_string(bcstring);
+      if (this.state.entities_not_blocks) {
+        commands = bg.gen_colored_commands(
+          bc,
+          this.state.tag,
+          this.state.brightness
+        );
+      } else {
+        commands = bg.gen_colored_commands_solid(bc);
+      }
+    } else {
+      if (this.state.entities_not_blocks) {
+        commands = bg.gen_commands(
           this.state.blockname,
           this.state.tag,
           this.state.brightness
-        ),
-      });
-    } else {
-      this.setState({
-        commands: bg.gen_commands_solid(this.state.blockname),
-      });
+        );
+      } else {
+        commands = bg.gen_commands_solid(this.state.blockname);
+      }
     }
+
+    this.setState({
+      commands: commands,
+    });
   };
   entityOptionsInput = (
     <>
@@ -123,15 +147,46 @@ class ObjectPage extends Component {
     </>
   );
   render() {
+    let has_uv = false;
+    if (this.state.obj_info instanceof Map) {
+      has_uv = this.state.obj_info.get("has_uvs");
+    }
+    let valid = this.state.obj_file && this.state.obj_info.get("valid");
+    let imgvalid = this.state.image_bytes && this.state.image_info.get("valid");
+    let texturePrompt = <></>;
+    if (valid) {
+      texturePrompt = has_uv ? (
+        <>
+          Your .obj file has a uv map, if you want to color it, input a texture
+          <div className="warning">
+            If the object uses more than one texture, i'm sorry, i was too lazy
+            to implement it, pick only one of the textures
+          </div>
+          <div className="warning">
+            also, the coloring algorithm is quite slow, so make sure your object
+            isn't too complex
+          </div>
+          <ImgInput
+            onChange={this.handleImageChange}
+            src={this.state.image_url}
+            imgInfo={this.state.image_info}
+            class1="layer2"
+            class2="layer3"
+            height={200}
+            width={200}
+          />
+        </>
+      ) : (
+        <div className="warning">
+          no uv map found on the object, can't apply texture
+        </div>
+      );
+    }
+
     let maybeButton = <></>;
     let continuation = <></>;
     if (this.state.type == "wireframe") {
-      if (
-        this.state.obj_file &&
-        this.state.obj_info.get("valid") &&
-        this.state.width &&
-        this.state.blockname
-      ) {
+      if (valid && this.state.width && this.state.blockname) {
         maybeButton = (
           <button onClick={this.generateWireframe}>Generate</button>
         );
@@ -173,24 +228,23 @@ class ObjectPage extends Component {
       );
     } else if (this.state.type == "voxelize") {
       if (
-        this.state.obj_file &&
-        this.state.obj_info.get("valid") &&
+        valid &&
         this.state.grid_corner &&
         this.state.grid_size &&
         this.state.block_size &&
-        this.state.blockname
+        (this.state.blockname || imgvalid)
       ) {
         maybeButton = <button onClick={this.generateVoxels}>Generate</button>;
       }
       continuation = (
         <div className="layer1 match-parent">
-          <p style={{ fontSize: "small" }} className="warning">
+          <div className="warning">
             the voxelization algorithm used is very bad and it'll only work if
             your object's mesh is closed (ie. any given straight line will
             intersect it an even number of times) and no vertices align with
-            grid's lines (that can usually be assured by shifting grid's origin
-            by 0.000001 in all directions or sth).
-          </p>
+            grid's lines (that can usually be assured by shifting grid's corner
+            by ±0.000001 in all directions).
+          </div>
           <label>
             Voxel size:
             <input
@@ -259,20 +313,14 @@ class ObjectPage extends Component {
           ) : (
             <></>
           )}
-          <ImgInput
-            onChange={this.handleImageChange}
-            src={this.state.image_url}
-            imgInfo={this.state.image_info}
-            class1="layer2"
-            class2="layer3"
-            height={200}
-            width={200}
-          />
+          {texturePrompt}
+          <br />
           {maybeButton}
           <br />
         </div>
       );
     }
+
     return (
       <div>
         <label>
@@ -286,13 +334,13 @@ class ObjectPage extends Component {
           />
         </label>
         <br />
-        <label>
+        <span>
           .obj file:
           <ObjInput
             handleSetObj={this.handleSetObj}
             objInfo={this.state.obj_info}
           />
-        </label>
+        </span>
         <br />
         <label>
           <OptionPicker

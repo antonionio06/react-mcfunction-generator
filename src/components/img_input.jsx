@@ -58,38 +58,39 @@ class ImgInput extends Component {
       this.props.imgInfo instanceof Map && this.props.imgInfo.get("valid");
     return (
       <div className={this.props.class1} style={{ display: "inline-block" }}>
-        <div
-          className={this.props.class2}
-          style={{
-            width: this.props.width,
-            height: this.props.height,
-            position: "relative",
-          }}
-          onDragOver={(e) => {
-            e.stopPropagation();
-            e.preventDefault();
-          }}
-          onDrop={this.onDrop}
-        >
-          <img
-            src={this.props.src}
-            height={this.props.height}
-            width={this.props.width}
-            className={is_valid ? "pixelated obj-fit" : "hidden"}
-          />
-          <div className={is_valid ? "hidden" : "centered"}>
-            Drag and drop image here
-            <br />
-            <label>
-              <strong>or click to select file</strong>
+        <label style={{ margin: 0 }}>
+          <div
+            className={"clickable " + this.props.class2}
+            style={{
+              width: this.props.width,
+              height: this.props.height,
+              position: "relative",
+            }}
+            onDragOver={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              e.dataTransfer.dropEffect = "copy";
+            }}
+            onDrop={this.onDrop}
+          >
+            <img
+              src={this.props.src}
+              height={this.props.height}
+              width={this.props.width}
+              className={is_valid ? "pixelated obj-fit" : "hidden"}
+            />
+            <div className={is_valid ? "hidden" : "centered"}>
+              Drag and drop image here
+              <br />
+              or click to select file
               <input
                 type="file"
                 className="very-hidden"
                 onChange={this.onChange}
               />
-            </label>
+            </div>
           </div>
-        </div>
+        </label>
         {rendered_info}
       </div>
     );

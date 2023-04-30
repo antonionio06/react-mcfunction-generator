@@ -61,6 +61,9 @@ input {
 input[type=text] {
   font-family: monospace;
 }
+input[type=number] {
+  width: 8em;
+}
 input[type=button], input[type=submit], input[type=reset], button {
   background-color: var(--colored-color);
   border: none;
@@ -189,6 +192,9 @@ font-weight: 300;
     top: 50%;
     text-align: center;
     width: 100%;
+}
+.clickable:hover{
+  cursor: pointer;
 }
 .tooltip .tooltiptext {
   visibility: hidden;

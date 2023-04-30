@@ -9,7 +9,7 @@ class VectorInput extends Component {
   };
   render() {
     return (
-      <div className={this.props.class1}>
+      <div className={this.props.class1} style={{ display: "inline-block" }}>
         <span className="nowrap">
           <span style={{ color: "red" }}>x</span>
           <input
