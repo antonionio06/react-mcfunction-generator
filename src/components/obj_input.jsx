@@ -17,17 +17,9 @@ class ObjInput extends Component {
     let info = this.props.objInfo;
     if (info instanceof Map) {
       if (info.get("valid")) {
-        rendered_info = (
-          <div className="layer1">
-            Valid obj file
-            <br />
-            {info.get("triangles")} triangles
-            <br />
-            uv coordinates available: {info.get("has_uvs") ? "yes" : "no"}
-          </div>
-        );
+        rendered_info = <></>;
       } else {
-        rendered_info = <p className="error layer1">File invalid</p>;
+        rendered_info = <div className="error layer1">File invalid</div>;
       }
     }
 
