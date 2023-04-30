@@ -87,6 +87,7 @@ class ImgInput extends Component {
                 type="file"
                 className="very-hidden"
                 onChange={this.onChange}
+                accept="image/*"
               />
             </div>
           </div>
