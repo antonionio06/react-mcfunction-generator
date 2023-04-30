@@ -14,7 +14,7 @@ class ImgInput extends Component {
     this.props.onChange(bytes, img_info, img_url);
   };
   render() {
-    let rendered_info = <>no file selected</>;
+    let rendered_info = <></>;
     let info = this.props.imgInfo;
     if (info instanceof Map) {
       if (info.get("valid")) {

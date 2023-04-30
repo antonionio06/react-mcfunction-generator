@@ -42,16 +42,12 @@ class ObjectPage extends Component {
   handleSetType = (type) => {
     this.setState({ type: type });
   };
-  handleImageChange = async (event) => {
-    if (event.target.files && event.target.files[0]) {
-      let image_bytes = new Uint8Array(
-        await event.target.files[0].arrayBuffer()
-      );
-      this.setState({
-        image_url: URL.createObjectURL(event.target.files[0]),
-        image_bytes: image_bytes,
-      });
-    }
+  handleImageChange = async (img_bytes, img_info, img_url) => {
+    this.setState({
+      image_info: img_info,
+      image_bytes: img_bytes,
+      image_url: img_url,
+    });
   };
   generateWireframe = () => {
     // let res = await fetch("/react-mcfunction-generator/obj/suzanne.obj");
@@ -266,6 +262,7 @@ class ObjectPage extends Component {
           <ImgInput
             onChange={this.handleImageChange}
             src={this.state.image_url}
+            imgInfo={this.state.image_info}
             class1="layer2"
             class2="layer3"
           />
