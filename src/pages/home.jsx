@@ -19,7 +19,7 @@ class HomePage extends Component {
           othersut
         </span>
         otherstuff */}
-        <div
+        {/* <div
           style={{
             width: 300,
             height: 300,
@@ -35,7 +35,7 @@ class HomePage extends Component {
           onDrop={this.onDrop}
         >
           Drag and drop here
-        </div>
+        </div> */}
       </div>
     );
   }

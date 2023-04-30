@@ -165,6 +165,9 @@ font-weight: 300;
 .hidden {
   visibility: hidden;
 }
+.very-hidden {
+  display: none;
+}
 .obj-fit {
   object-fit: contain;
 }
@@ -180,6 +183,12 @@ font-weight: 300;
 }
 .inline-block {
   display: inline-block;
+}
+.centered {
+    position: absolute;
+    top: 50%;
+    text-align: center;
+    width: 100%;
 }
 .tooltip .tooltiptext {
   visibility: hidden;
