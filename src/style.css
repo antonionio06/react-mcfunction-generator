@@ -9,6 +9,7 @@
   font-family: sans-serif;
   color-scheme: dark;
   border-radius: 5px;
+  margin: 5px;
 }
 body {
   background-color: #111;
@@ -88,7 +89,10 @@ input.layer2::file-selector-button {
   background-color: #444;
   border-color: #444;
 }
-
+input.layer3::file-selector-button {
+  background-color: #555;
+  border-color: #555;
+}
 pre {
 padding: 5px 5px;
 font-family: monospace;
@@ -100,6 +104,7 @@ margin: 10px;
 .match-parent {
   width: 100%;
 }
+
 .layer1 {
 background-color: #222;
 border-color: #222;
@@ -144,18 +149,34 @@ font-weight: 300;
 }
 .round-left {
   border-radius: 5px 0px 0px 5px;
+  margin: 5px 0px 0px 5px;
+}
+.noround {
+  border-radius: 0px;
+  margin: 0px;
 }
 .round-right {
   border-radius: 0px 5px 5px 0px;
+  margin: 0px 5px 5px 0px;
 }
 .pixelated {
   image-rendering: pixelated;
+}
+.hidden {
+  visibility: hidden;
 }
 .obj-fit {
   object-fit: contain;
 }
 .nowrap {
   white-space: nowrap;
+}
+.warning {
+  color: orange;
+  font-size: small;
+}
+.error {
+  color: red;
 }
 .inline-block {
   display: inline-block;

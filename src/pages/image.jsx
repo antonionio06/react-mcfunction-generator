@@ -6,6 +6,7 @@ class ImagePage extends Component {
   state = {
     image_url: undefined,
     image_bytes: undefined,
+    image_info: undefined,
 
     entities_not_blocks: false,
     tag: "",
@@ -36,20 +37,20 @@ class ImagePage extends Component {
       });
     }
   };
-  onImageChange = async (event) => {
-    if (event.target.files && event.target.files[0]) {
-      let image_bytes = new Uint8Array(
-        await event.target.files[0].arrayBuffer()
-      );
-      this.setState({
-        image_url: URL.createObjectURL(event.target.files[0]),
-        image_bytes: image_bytes,
-      });
-    }
+  onImageChange = async (img_bytes, img_info, img_url) => {
+    this.setState({
+      image_info: img_info,
+      image_bytes: img_bytes,
+      image_url: img_url,
+    });
   };
   render() {
     let maybeButton = <></>;
-    if (this.state.image_bytes) {
+    if (
+      this.state.image_bytes &&
+      this.state.image_info instanceof Map &&
+      this.state.image_info.get("valid")
+    ) {
       maybeButton = <button onClick={this.generate}>Generate</button>;
     }
     let entityOptionsInput = <></>;
@@ -113,9 +114,11 @@ class ImagePage extends Component {
           input image:
           <ImgInput
             src={this.state.image_url}
+            imgInfo={this.state.image_info}
             onChange={this.onImageChange}
             class1="layer1"
             class2="layer2"
+            warn={256 * 256 * 4}
           />
         </label>
         <label>

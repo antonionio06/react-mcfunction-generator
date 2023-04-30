@@ -4,6 +4,7 @@ import ObjInput from "../components/obj_input";
 import VectorInput from "../components/vector_input";
 import * as wasm from "wasm-mcfg";
 import OptionPicker from "../components/option_picker";
+import ImgInput from "../components/img_input";
 class ObjectPage extends Component {
   state = {
     obj_file: null,
@@ -24,6 +25,9 @@ class ObjectPage extends Component {
     grid_corner: [0.0, 0.0, 0.0],
     hollow: true,
 
+    image_url: null,
+    image_bytes: null,
+
     commands: null,
   };
   handleSetObj = (obj_bytes, obj_info) => {
@@ -38,7 +42,17 @@ class ObjectPage extends Component {
   handleSetType = (type) => {
     this.setState({ type: type });
   };
-
+  handleImageChange = async (event) => {
+    if (event.target.files && event.target.files[0]) {
+      let image_bytes = new Uint8Array(
+        await event.target.files[0].arrayBuffer()
+      );
+      this.setState({
+        image_url: URL.createObjectURL(event.target.files[0]),
+        image_bytes: image_bytes,
+      });
+    }
+  };
   generateWireframe = () => {
     // let res = await fetch("/react-mcfunction-generator/obj/suzanne.obj");
     // let objbytes = new Uint8Array(await res.arrayBuffer());
@@ -116,7 +130,12 @@ class ObjectPage extends Component {
     let maybeButton = <></>;
     let continuation = <></>;
     if (this.state.type == "wireframe") {
-      if (this.state.obj_file && this.state.width && this.state.blockname) {
+      if (
+        this.state.obj_file &&
+        this.state.obj_info.get("valid") &&
+        this.state.width &&
+        this.state.blockname
+      ) {
         maybeButton = (
           <button onClick={this.generateWireframe}>Generate</button>
         );
@@ -159,6 +178,7 @@ class ObjectPage extends Component {
     } else if (this.state.type == "voxelize") {
       if (
         this.state.obj_file &&
+        this.state.obj_info.get("valid") &&
         this.state.grid_corner &&
         this.state.grid_size &&
         this.state.block_size &&
@@ -168,7 +188,7 @@ class ObjectPage extends Component {
       }
       continuation = (
         <div className="layer1 match-parent">
-          <p style={{ color: "red", fontSize: "small" }}>
+          <p style={{ fontSize: "small" }} className="warning">
             the voxelization algorithm used is very bad and it'll only work if
             your object's mesh is closed (ie. any given straight line will
             intersect it an even number of times) and no vertices align with
@@ -243,7 +263,12 @@ class ObjectPage extends Component {
           ) : (
             <></>
           )}
-
+          <ImgInput
+            onChange={this.handleImageChange}
+            src={this.state.image_url}
+            class1="layer2"
+            class2="layer3"
+          />
           {maybeButton}
           <br />
         </div>

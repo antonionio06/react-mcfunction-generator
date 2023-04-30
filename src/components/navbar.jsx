@@ -5,10 +5,18 @@ class Navbar extends Component {
   render() {
     return (
       <nav className="topnav">
-        <Link to="/">home</Link>
-        <Link to="/image">image</Link>
-        <Link to="/object">3d object</Link>
-        <Link to="/about">about</Link>
+        <Link to="/" className="noround">
+          home
+        </Link>
+        <Link to="/image" className="noround">
+          image
+        </Link>
+        <Link to="/object" className="noround">
+          3d object
+        </Link>
+        <Link to="/about" className="noround">
+          about
+        </Link>
       </nav>
     );
   }
