@@ -1,17 +1,6 @@
 import React, { Component } from "react";
 import * as wasm from "wasm-mcfg";
 
-function replacer(key, value) {
-  if (value instanceof Map) {
-    return {
-      dataType: "Map",
-      value: Array.from(value.entries()),
-    };
-  } else {
-    return value;
-  }
-}
-
 class ObjInput extends Component {
   state = {};
   handleFileChange = async (e) => {

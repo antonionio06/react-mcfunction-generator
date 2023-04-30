@@ -265,6 +265,8 @@ class ObjectPage extends Component {
             imgInfo={this.state.image_info}
             class1="layer2"
             class2="layer3"
+            height={200}
+            width={200}
           />
           {maybeButton}
           <br />

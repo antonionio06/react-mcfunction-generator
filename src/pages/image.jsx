@@ -112,6 +112,7 @@ class ImagePage extends Component {
       <div>
         <span>
           input image:
+          <br />
           <ImgInput
             src={this.state.image_url}
             imgInfo={this.state.image_info}
@@ -119,7 +120,10 @@ class ImagePage extends Component {
             class1="layer1"
             class2="layer2"
             warn={256 * 256 * 4}
+            width={200}
+            height={200}
           />
+          <br />
         </span>
         <label>
           Make it out of display entities (instead just building it with blocks)
