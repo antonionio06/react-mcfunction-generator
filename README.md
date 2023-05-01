@@ -105,9 +105,18 @@ In short, the voxelization algorithm used here works like this:
 - each filled voxel is then converted into a command, setting the corresponding block to the one you specified.
 
 Here's a cool 2d visualisation of the algorithm, it also shows the role of all the things, that you input in the UI:
+
 <img src="/public/images/voxelization.png"/>
 
-<!-- UI inputs are
-- voxel size
-- grid size
-- grid corner  -->
+If you still don't get how it works, I guess just play with the input values, until something cool comes out or your browser crashes.
+
+#### coloring
+
+If the 3d object you provided includes [uv coordinates](https://en.wikipedia.org/wiki/UV_mapping) a texture can be aplied to it.
+The way it works is
+
+- for each filled voxel calculate the closest point on the mesh.
+- sample the color of that point from the provided texture and assign it to the voxel.
+- find the block corresponding to that color
+
+Note: some models are made out of multiple materials and use many different textures. You can only apply one texture here because ~~I'm lazy~~ that info isn't included in the .obj file
