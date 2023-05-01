@@ -267,7 +267,7 @@ class ObjectPage extends Component {
           </label>
           <br />
           <label>
-            grid size (in blocks) (width, height, length)
+            grid size (in blocks):
             <VectorInput
               key={2}
               onChange={(val) => this.setState({ grid_size: val })}
