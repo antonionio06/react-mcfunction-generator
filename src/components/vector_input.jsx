@@ -9,8 +9,8 @@ class VectorInput extends Component {
   };
   render() {
     return (
-      <div className={this.props.class1} style={{ display: "inline-block" }}>
-        <span className="nowrap">
+      <div className={this.props.class1 + " inline-block"}>
+        <span className="nowrap inline-block">
           <span style={{ color: "red" }}>x</span>
           <input
             type="number"
@@ -21,7 +21,7 @@ class VectorInput extends Component {
             min={this.props.min}
           />
         </span>
-        <span className="nowrap">
+        <span className="nowrap inline-block">
           <span style={{ color: "green" }}>y</span>
           <input
             type="number"
@@ -32,7 +32,7 @@ class VectorInput extends Component {
             min={this.props.min}
           />
         </span>
-        <span className="nowrap">
+        <span className="nowrap inline-block">
           <span style={{ color: "blue" }}>z</span>
           <input
             type="number"

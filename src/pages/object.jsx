@@ -51,9 +51,6 @@ class ObjectPage extends Component {
     });
   };
   generateWireframe = () => {
-    // let res = await fetch("/react-mcfunction-generator/obj/suzanne.obj");
-    // let objbytes = new Uint8Array(await res.arrayBuffer());
-    // let bg = wasm.BlockGrid.new([32, 32, 32], this.state.origin, 0.0625);
     this.setState({
       commands: wasm.add_mesh(
         this.state.obj_file,
@@ -66,6 +63,8 @@ class ObjectPage extends Component {
     });
   };
   generateVoxels = async () => {
+    wasm.panic_init();
+    console.log(this.state);
     let bg = wasm.BlockGrid.new(
       this.state.grid_size,
       this.state.grid_corner,
@@ -76,9 +75,14 @@ class ObjectPage extends Component {
       bg.make_hollow();
     }
     let commands = "";
+    let has_uv = false;
+    if (this.state.obj_info instanceof Map) {
+      has_uv = this.state.obj_info.get("has_uvs");
+    }
     let colorize =
       this.state.image_info instanceof Map &&
-      this.state.image_info.get("valid");
+      this.state.image_info.get("valid") &&
+      has_uv;
     let bc = null;
     if (colorize) {
       bg.colorize(this.state.obj_file, this.state.image_bytes);
@@ -112,40 +116,6 @@ class ObjectPage extends Component {
       commands: commands,
     });
   };
-  entityOptionsInput = (
-    <>
-      <label>
-        tag (so that you can select generated entities with @e[tag=�]):
-        <input
-          type="text"
-          className="layer3"
-          defaultValue={this.state.tag}
-          onChange={(e) => {
-            this.setState({ tag: e.target.value });
-          }}
-        />
-      </label>
-      <br />
-      <label>
-        brightness (-1 for default)
-        <input
-          type="number"
-          className="layer3"
-          min={-1}
-          max={15}
-          defaultValue={this.state.brightnessint}
-          onChange={async (e) => {
-            let brightnessint = parseInt(e.target.value);
-            let brightness = brightnessint == -1 ? undefined : brightnessint;
-            this.setState({
-              brightnessint: brightnessint,
-              brightness: brightness,
-            });
-          }}
-        />
-      </label>
-    </>
-  );
   render() {
     let has_uv = false;
     if (this.state.obj_info instanceof Map) {
@@ -154,6 +124,40 @@ class ObjectPage extends Component {
     let valid = this.state.obj_file && this.state.obj_info.get("valid");
     let imgvalid = this.state.image_bytes && this.state.image_info.get("valid");
     let texturePrompt = <></>;
+    let entityOptionsInput = (
+      <>
+        <label>
+          tag (so that you can select generated entities with @e[tag=�]):
+          <input
+            type="text"
+            className={this.state.type == "wireframe" ? "layer2" : "layer3"}
+            defaultValue={this.state.tag}
+            onChange={(e) => {
+              this.setState({ tag: e.target.value });
+            }}
+          />
+        </label>
+        <br />
+        <label>
+          brightness (-1 for default)
+          <input
+            type="number"
+            className={this.state.type == "wireframe" ? "layer2" : "layer3"}
+            min={-1}
+            max={15}
+            defaultValue={this.state.brightnessint}
+            onChange={async (e) => {
+              let brightnessint = parseInt(e.target.value);
+              let brightness = brightnessint == -1 ? undefined : brightnessint;
+              this.setState({
+                brightnessint: brightnessint,
+                brightness: brightness,
+              });
+            }}
+          />
+        </label>
+      </>
+    );
     if (valid) {
       texturePrompt = has_uv ? (
         <>
@@ -222,7 +226,7 @@ class ObjectPage extends Component {
             />
           </label>
           <br />
-          {this.entityOptionsInput}
+          {entityOptionsInput}
           {maybeButton}
           <br />
         </div>
@@ -233,7 +237,7 @@ class ObjectPage extends Component {
         this.state.grid_corner &&
         this.state.grid_size &&
         this.state.block_size &&
-        (this.state.blockname || imgvalid)
+        (this.state.blockname || (imgvalid && has_uv))
       ) {
         maybeButton = <button onClick={this.generateVoxels}>Generate</button>;
       }
@@ -257,7 +261,7 @@ class ObjectPage extends Component {
               step={1.0 / 32}
               min={0.0}
               onChange={(e) => {
-                this.setState({ block_size: e.target.value });
+                this.setState({ block_size: parseFloat(e.target.value) });
               }}
             />
           </label>
@@ -310,7 +314,7 @@ class ObjectPage extends Component {
           <br />
 
           {this.state.entities_not_blocks ? (
-            <div className="layer2">{this.entityOptionsInput}</div>
+            <div className="layer2">{entityOptionsInput}</div>
           ) : (
             <></>
           )}

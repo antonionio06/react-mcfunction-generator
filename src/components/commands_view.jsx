@@ -16,15 +16,31 @@ class CommandsView extends Component {
     let copied = this.state.copied;
     this.state.copied = false;
     let ncommands = this.props.content.split("\n").length - 1;
+    let length_info = (
+      <span className="inline-block">{ncommands + " commands generated"}</span>
+    );
+    if (ncommands > 0x10000) {
+      length_info = (
+        <span className="warning inline-block">
+          {ncommands} commands generated, single .mcfunction file will only
+          execute {0x10000} of them. Split it into multiple files
+        </span>
+      );
+    }
     return (
-      <div className="layer1">
-        <button
-          onClick={this.copyToClipboard}
-          className={copied ? "active" : ""}
-        >
-          Copy
-        </button>
-        <span>{ncommands + " commands generated"}</span>
+      <div
+        className="layer1"
+        style={{ display: "flex", flexDirection: "column" }}
+      >
+        <div>
+          <button
+            onClick={this.copyToClipboard}
+            className={copied ? "active" : ""}
+          >
+            Copy
+          </button>
+          {length_info}
+        </div>
         <br />
         <textarea
           rows={50}
