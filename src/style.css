@@ -4,9 +4,6 @@
 
 
 *  {
-  /* background-color: rgb(64, 64, 64); */
-  color: white;
-  font-family: sans-serif;
   color-scheme: dark;
   border-radius: 5px;
   margin: 5px;
@@ -18,20 +15,13 @@ body {
 }
 
 h1 {
-  color: rgb(255, 0, 0);
   text-align: center;
 }
-
-p {
-  font-family: verdana;
-  font-size: 20px;
-}
-ul {
+/* ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-}
-/* Add a black background color to the top navigation */
+} */
 .topnav {
   background-color: #222;
   overflow: hidden;

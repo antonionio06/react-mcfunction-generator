@@ -1,4 +1,4 @@
-# A thing that makes images and 3d objects into minecraft commands
+# I made a thing that makes images and 3d objects into minecraft commands
 
 ## 3d objects
 
@@ -14,7 +14,7 @@ When you generate something from many display entities, each of them is assigned
 - the one you input
 - a unique number
 
-For the entity to be transformed correctly it must have a unique combination of those two,
+For the entity to be transformed correctly it must have a unique combination of the two,
 so if you want to add multiple wireframes in a single world, they must have different tags.
 The tag you input can then later be used to select all entities from a single wireframe with @e\[tag= {...}\]
 For example if you want to teleport the wireframe to where you're standing, run `/tp @e[tag=YOUR_TAG] @s`
@@ -65,14 +65,15 @@ Full list of everything that's left, and their corresponding colors can be viewe
 It'd be possible to pick between many such lists to e.g. only use blocks easily availble on survival if I implemented it, but I didn't
 
 Finding the block closest to a given color comes down to finding the square distance between two colors,
-which can be calculated from their r, g, b values: d^2 = (r<sub>1</sub>-r<sub>2</sub>)^2+(g<sub>1</sub>-g<sub>2</sub>)^2+(b<sub>1</sub>-b<sub>2</sub>)^2
+which can be calculated from their r, g, b values:
+d<sup>2</sup> = (r<sub>1</sub>-r<sub>2</sub>)<sup>2</sup>+(g<sub>1</sub>-g<sub>2</sub>)<sup>2</sup>+(b<sub>1</sub>-b<sub>2</sub>)<sup>2</sup>
 
 ## what do I do with the generated commands?
 
 minecraft datapacks support putting up to 65536 commands to a .mcfunction file. If you don't know much about creating datapacks,
 [here's more details](https://minecraft.fandom.com/wiki/Data_pack) or you can download this [sample data pack](/public/sample_datapack.zip) and put the generated commands to a file in /data/sample_datapack/functions/ and add the datapack to your world.
 
-That's all, here's some screenshots, that bring me joy
+#### That's all, here are some screenshots, that bring me joy
 
 <img src="/public/images/screenshots/globe.png"/>
 <img src="/public/images/screenshots/monke.png"/>

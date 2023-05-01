@@ -127,7 +127,7 @@ class ObjectPage extends Component {
     let entityOptionsInput = (
       <>
         <label>
-          tag (so that you can select generated entities with @e[tag=�]):
+          common tag:
           <input
             type="text"
             className={this.state.type == "wireframe" ? "layer2" : "layer3"}
@@ -198,7 +198,7 @@ class ObjectPage extends Component {
       continuation = (
         <div className="layer1 match-parent">
           <label>
-            Wireframe width:
+            wireframe width:
             <input
               key={1}
               type="number"
@@ -243,15 +243,15 @@ class ObjectPage extends Component {
       }
       continuation = (
         <div className="layer1 match-parent">
-          <div className="warning">
+          {/* <div className="warning">
             the voxelization algorithm used is very bad and it'll only work if
             your object's mesh is closed (ie. any given straight line will
             intersect it an even number of times) and no vertices align with
             grid's lines (that can usually be assured by shifting grid's corner
             by ±0.000001 in all directions).
-          </div>
+          </div> */}
           <label>
-            Voxel size:
+            voxel size:
             <input
               key={2}
               type="number"
@@ -280,7 +280,7 @@ class ObjectPage extends Component {
           </label>
           <br />
           <label>
-            Grid -x -y -z side corner:
+            grid -x -y -z side corner:
             <VectorInput
               key={2}
               onChange={(val) => this.setState({ grid_corner: val })}

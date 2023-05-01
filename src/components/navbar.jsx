@@ -6,16 +6,13 @@ class Navbar extends Component {
     return (
       <nav className="topnav">
         <Link to="/" className="noround">
-          home
+          about
         </Link>
         <Link to="/image" className="noround">
           image
         </Link>
         <Link to="/object" className="noround">
           3d object
-        </Link>
-        <Link to="/about" className="noround">
-          about
         </Link>
       </nav>
     );
