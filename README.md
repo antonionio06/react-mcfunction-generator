@@ -119,4 +119,17 @@ The way it works is
 - sample the color of that point from the provided texture and assign it to the voxel.
 - find the block corresponding to that color
 
-Note: some models are made out of multiple materials and use many different textures. You can only apply one texture here because ~~I'm lazy~~ that info isn't included in the .obj file
+Note: some 3d models are made of multiple materials and use many different textures. You can only apply one texture here because ~~I'm lazy~~ that info isn't included in the .obj file.
+
+## images
+
+If you take each block's texture file and compute it's average color, you can assign a color to every block in mineraft.
+Some blocks use multiple textures, and can be rotated in many ways, so I discarded them to avoid dealing with that.
+I also discarded:
+
+- blocks that are transparent
+- blocks that fall when placed in the air
+- blocks that glow
+- coral blocks (they dry without water)
+
+Full list of everything that's left, and their corresponding colors can be viewed [here](/public/bclists/blockcolors.txt)
