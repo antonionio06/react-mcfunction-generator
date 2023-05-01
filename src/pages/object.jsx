@@ -133,7 +133,7 @@ class ObjectPage extends Component {
             className={this.state.type == "wireframe" ? "layer2" : "layer3"}
             defaultValue={this.state.tag}
             onChange={(e) => {
-              this.setState({ tag: e.target.value });
+              this.setState({ tag: e.target.value || undefined });
             }}
           />
         </label>

@@ -64,7 +64,7 @@ class ImagePage extends Component {
               className="layer2"
               defaultValue={this.state.tag}
               onChange={(e) => {
-                this.setState({ tag: e.target.value });
+                this.setState({ tag: e.target.value || undefined });
               }}
             />
           </label>
