@@ -13,7 +13,7 @@ class ObjectPage extends Component {
     type: null,
 
     entities_not_blocks: false,
-    tag: "",
+    tag: null,
     brightnessint: -1,
     brightness: undefined,
 
@@ -200,6 +200,7 @@ class ObjectPage extends Component {
               type="number"
               value={this.state.width}
               step={0.01}
+              min={0.0}
               onChange={(e) => {
                 this.setState({ width: parseFloat(e.target.value) });
               }}
