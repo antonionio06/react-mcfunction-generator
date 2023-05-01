@@ -58,7 +58,7 @@ class ImagePage extends Component {
       entityOptionsInput = (
         <div className="layer1">
           <label>
-            tag (so that you can select generated entities with @e[tag=�]):
+            common tag:
             <input
               type="text"
               className="layer2"
