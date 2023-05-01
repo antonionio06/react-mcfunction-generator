@@ -4,7 +4,16 @@ class Navbar extends Component {
   state = {};
   render() {
     return (
-      <nav className="topnav">
+      <nav
+        className="topnav"
+        style={{
+          position: "sticky",
+          top: "5px",
+          zIndex: 2137,
+          borderColor: "#111",
+          borderStyle: "solid",
+        }}
+      >
         <Link to="/" className="noround">
           about
         </Link>
