@@ -71,7 +71,7 @@ d<sup>2</sup> = (r<sub>1</sub>-r<sub>2</sub>)<sup>2</sup>+(g<sub>1</sub>-g<sub>2
 ## what do I do with the generated commands?
 
 minecraft datapacks support putting up to 65536 commands to a .mcfunction file. If you don't know much about creating datapacks,
-[here's more details](https://minecraft.fandom.com/wiki/Data_pack) or you can download this [sample data pack](/public/sample_datapack.zip) and put the generated commands to a file in /data/sample_datapack/functions/ and add the datapack to your world.
+[here's more details](https://minecraft.wiki/w/Data_pack) or you can download this [sample data pack](/public/sample_datapack.zip) and put the generated commands to a file in /data/sample_datapack/functions/ and add the datapack to your world.
 
 #### That's all, here are some screenshots, that bring me joy
 
