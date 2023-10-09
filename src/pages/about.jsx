@@ -137,7 +137,7 @@ class AboutPage extends Component {
         <p>
           minecraft datapacks support putting up to 65536 commands to a
           .mcfunction file. If you don't know much about creating datapacks,
-          <a href="https://minecraft.fandom.com/wiki/Data_pack">
+          <a href="https://minecraft.wiki/w/Data_pack">
             here's more details
           </a>{" "}
           or you can download this{" "}
